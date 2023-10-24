@@ -1,11 +1,11 @@
 # DisfrazDataApi
 
 ## Content
-1. [Recomendations](Recomendations)
-2. [Installation](Instalation)
-3. [Start Project](Start-Project)
-4. [Running](Running)
-5. [Use](Use)
+1. [Recomendations](README.md#Recomendations)
+2. [Installation](README.md#Instalation)
+3. [Start Project](README.md#Start-Project)
+4. [Running](README.md#Running)
+5. [Use](README.md#Use)
 
 ### Recomendations
 Create a virtual enviroment in python for installing dependencies
