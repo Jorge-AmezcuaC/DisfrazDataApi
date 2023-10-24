@@ -1,0 +1,6 @@
+disfrazdata/db.sqlite3
+disfrazdata/disfrazdata/__pycache__
+*.pyc
+disfrazdata/api/__pycache__
+disfrazdata/api/migrations/__pycache__
+env
