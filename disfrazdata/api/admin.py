@@ -7,6 +7,7 @@ from .models import (
     Ventas,
     VentaProducto,
     Notificaciones,
+    Fotos
 )
 
 admin.site.register(Proveedores)
@@ -16,3 +17,4 @@ admin.site.register(DisfrazTalla)
 admin.site.register(Ventas)
 admin.site.register(VentaProducto)
 admin.site.register(Notificaciones)
+admin.site.register(Fotos)

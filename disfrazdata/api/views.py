@@ -11,7 +11,8 @@ from .models import (
     Proveedores, 
     Talla, 
     VentaProducto, 
-    Ventas
+    Ventas,
+    Fotos
     )
 from .serializer import (
     DisfracesSerializer,
@@ -21,7 +22,8 @@ from .serializer import (
     TallaSerializer,
     VentaProductoSerializer,
     VentasSerializer,
-    UserSerializer
+    UserSerializer,
+    FotoSerializer
 )
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -39,6 +41,8 @@ class UserViewSet(viewsets.ModelViewSet):
 class ProveedoresView(viewsets.ModelViewSet):
     queryset = Proveedores.objects.all()
     serializer_class = ProveedoresSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['Email']
 
 class TallaView(viewsets.ModelViewSet):
     queryset = Talla.objects.all()
@@ -67,3 +71,7 @@ class VentaProductoView(viewsets.ModelViewSet):
 class NotificacionesView(viewsets.ModelViewSet):
     queryset = Notificaciones.objects.all()
     serializer_class = NotificacionesSerializer
+
+class FotosView(viewsets.ModelViewSet):
+    queryset = Fotos.objects.all()
+    serializer_class = FotoSerializer

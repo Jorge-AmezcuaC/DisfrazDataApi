@@ -20,6 +20,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             },
         }
 
+class FotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Fotos
+        fields = '__all__'
+
 class ProveedoresSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Proveedores
@@ -30,15 +35,31 @@ class TallaSerializer(serializers.ModelSerializer):
         model = models.Talla
         fields = '__all__'
         
-class DisfracesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = models.Disfraces
-        fields = '__all__'
-        
 class DisfrazTallaSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.DisfrazTalla
-        fields = '__all__'
+        fields = [
+            'talla',
+            'cantidad',
+            'minStock',
+            'maxStock',
+            'precio',
+        ]
+        depth = 2
+        
+class DisfracesSerializer(serializers.ModelSerializer):
+    tallas = DisfrazTallaSerializer(many = True, read_only = True)
+    fotos = FotoSerializer(many = True, read_only = True)
+    class Meta:
+        model = models.Disfraces
+        fields = [
+            'id',
+            'Nombre',
+            'Descripcion',
+            'proveedor',
+            'tallas',
+            'fotos'
+            ]
         
 class VentasSerializer(serializers.ModelSerializer):
     class Meta:
