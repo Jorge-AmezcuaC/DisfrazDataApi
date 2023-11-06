@@ -36,16 +36,30 @@ class TallaSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class DisfrazTallaSerializer(serializers.ModelSerializer):
+    talla = TallaSerializer(read_only = True)
     class Meta:
         model = models.DisfrazTalla
         fields = [
-            'talla',
+            'id',
+            'disfraz',
             'cantidad',
             'minStock',
             'maxStock',
             'precio',
+            'talla',
         ]
-        depth = 2
+
+class DisfrazTallaSerializerPost(serializers.ModelSerializer):
+    class Meta:
+        model = models.DisfrazTalla
+        fields = [
+            'disfraz',
+            'cantidad',
+            'minStock',
+            'maxStock',
+            'precio',
+            'talla',
+        ]
         
 class DisfracesSerializer(serializers.ModelSerializer):
     tallas = DisfrazTallaSerializer(many = True, read_only = True)

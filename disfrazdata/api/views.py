@@ -23,7 +23,8 @@ from .serializer import (
     VentaProductoSerializer,
     VentasSerializer,
     UserSerializer,
-    FotoSerializer
+    FotoSerializer,
+    DisfrazTallaSerializerPost
 )
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -59,6 +60,10 @@ class DisfrazTallaView(viewsets.ModelViewSet):
     serializer_class = DisfrazTallaSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['precio']
+
+class DisfrazTallaViewPost(viewsets.ModelViewSet):
+    queryset = DisfrazTalla.objects.all()
+    serializer_class = DisfrazTallaSerializerPost
 
 class VentasView(viewsets.ModelViewSet):
     queryset = Ventas.objects.all()
