@@ -63,6 +63,7 @@ class Notificaciones(models.Model):
     Estado = models.BooleanField(default=False)
     Fecha = models.DateField()
     proveedor = models.ForeignKey(Proveedores, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Disfraces, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.Fecha} {self.Estado} {self.proveedor}'

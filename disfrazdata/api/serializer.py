@@ -86,6 +86,7 @@ class VentaProductoSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class NotificacionesSerializer(serializers.ModelSerializer):
+    producto = DisfracesSerializer()
     class Meta:
         model = models.Notificaciones
         fields = '__all__'

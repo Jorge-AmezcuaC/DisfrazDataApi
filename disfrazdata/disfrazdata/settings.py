@@ -90,18 +90,18 @@ WSGI_APPLICATION = 'disfrazdata.wsgi.application'
 
 DATABASES = {
     # DATA BASE FOR TESTINGS
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'disfrazdb', #pones aqui el nombre de la base de datos
-        'USER': 'postgres', # aqui tu usuario de postgres
-        'PASSWORD': 'password', # aqui la contrasena del usuario
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'disfrazdb', #pones aqui el nombre de la base de datos
+    #     'USER': 'postgres', # aqui tu usuario de postgres
+    #     'PASSWORD': 'password', # aqui la contrasena del usuario
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 
 
