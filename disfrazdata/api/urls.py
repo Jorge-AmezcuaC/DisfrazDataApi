@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'PostTallas', views.DisfrazTallaViewPost)
+router.register(r'PostNotificaciones', views.PostNotificacionesView)
 router.register(r'users', views.UserViewSet)
 router.register(r'Proveedores', views.ProveedoresView)
 router.register(r'Talla', views.TallaView)

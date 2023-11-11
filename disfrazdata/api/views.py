@@ -31,7 +31,8 @@ from .serializer import (
     FotoSerializer,
     DisfrazTallaSerializerPost,
     CarritoSerializer,
-    AuthSerializer
+    AuthSerializer,
+    PostNotificacionesSerializer
 )
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -83,6 +84,10 @@ class VentaProductoView(viewsets.ModelViewSet):
 class NotificacionesView(viewsets.ModelViewSet):
     queryset = Notificaciones.objects.all()
     serializer_class = NotificacionesSerializer
+
+class PostNotificacionesView(viewsets.ModelViewSet):
+    queryset = Notificaciones.objects.all()
+    serializer_class = PostNotificacionesSerializer
 
 class FotosView(viewsets.ModelViewSet):
     queryset = Fotos.objects.all()
