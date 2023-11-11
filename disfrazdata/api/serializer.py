@@ -93,7 +93,7 @@ class VentaProductoSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 class NotificacionesSerializer(serializers.ModelSerializer):
-    producto = DisfracesSerializer()
+    producto = DisfracesSerializer(read_only = True)
     class Meta:
         model = models.Notificaciones
         fields = '__all__'
