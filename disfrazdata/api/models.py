@@ -74,3 +74,10 @@ class Fotos(models.Model):
 
     def __str__(self):
         return f'{self.foto} {self.disfraz}'
+    
+class Carrito(models.Model):
+    cantidad = models.IntegerField()
+    disfraz = models.ForeignKey(DisfrazTalla, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.cantidad} {self.disfraz}'

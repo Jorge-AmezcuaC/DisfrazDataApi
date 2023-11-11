@@ -2,6 +2,7 @@ from django.urls import include, path
 from rest_framework import routers
 from . import views
 from django.conf import settings
+from rest_framework.authtoken.views import obtain_auth_token
 from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
@@ -15,10 +16,11 @@ router.register(r'Ventas', views.VentasView)
 router.register(r'VentaProducto', views.VentaProductoView)
 router.register(r'Notificaciones', views.NotificacionesView)
 router.register(r'fotos', views.FotosView)
+router.register(r'carro', views.CarritoView)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('login/', views.UserLoginView.as_view(), name='user-login'),
 ]
 
 if settings.DEBUG:

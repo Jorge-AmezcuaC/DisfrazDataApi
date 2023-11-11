@@ -1,6 +1,10 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
+from rest_framework import generics, status
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import authenticate
 from rest_framework.response import Response
+from rest_framework import generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from rest_framework import status
@@ -12,7 +16,8 @@ from .models import (
     Talla, 
     VentaProducto, 
     Ventas,
-    Fotos
+    Fotos,
+    Carrito
     )
 from .serializer import (
     DisfracesSerializer,
@@ -24,7 +29,9 @@ from .serializer import (
     VentasSerializer,
     UserSerializer,
     FotoSerializer,
-    DisfrazTallaSerializerPost
+    DisfrazTallaSerializerPost,
+    CarritoSerializer,
+    AuthSerializer
 )
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -80,3 +87,32 @@ class NotificacionesView(viewsets.ModelViewSet):
 class FotosView(viewsets.ModelViewSet):
     queryset = Fotos.objects.all()
     serializer_class = FotoSerializer
+
+class CarritoView(viewsets.ModelViewSet):
+    queryset = Carrito.objects.all()
+    serializer_class = CarritoSerializer
+
+
+class UserLoginView(generics.CreateAPIView):
+    serializer_class = AuthSerializer
+
+    def create(self, request, *args, **kwargs):
+        # Obtener datos del request
+        username = request.data.get('username')
+        password = request.data.get('password')
+        # Autenticar al usuario
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            # Usuario autenticado, generando token
+            token, _ = Token.objects.get_or_create(user=user)
+            user_data = {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'is_staff': user.is_staff,
+                'is_superuser': user.is_superuser,
+            }
+            return Response({'token': token.key, 'user': user_data})
+        else:
+            return Response({'detail': 'Credenciales inválidas'}, status=status.HTTP_401_UNAUTHORIZED)

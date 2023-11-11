@@ -3,22 +3,26 @@ from rest_framework import serializers
 from . import models
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'is_superuser', 'is_staff', 'password']
+        fields = ['id', 'username', 'email', 'is_staff', 'is_superuser']
         extra_kwargs = {
             'password': {
                 'write_only': True,
                 'style': {'input_type': 'password'},
             },
             'is_superuser': {
-                'write_only': True
+                'read_only': True
             },
             'is_staff': {
-                'write_only': True
+                'read_only': True
             },
         }
+
+class AuthSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
 
 class FotoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -91,3 +95,7 @@ class NotificacionesSerializer(serializers.ModelSerializer):
         model = models.Notificaciones
         fields = '__all__'
         
+class CarritoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.Carrito
+        fields = '__all__'
