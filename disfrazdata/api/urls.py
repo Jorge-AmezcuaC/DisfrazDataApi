@@ -20,6 +20,7 @@ router.register(r'carro', views.CarritoView)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('register/', views.UserRegistrationView.as_view(), name='user-registration'),
     path('login/', views.UserLoginView.as_view(), name='user-login'),
 ]
 
